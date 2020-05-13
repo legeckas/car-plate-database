@@ -3,8 +3,15 @@
 {% block content %}
 <h3>Details for plate number - {{ object.plate_number }}</h3>
 
-<p>Plate Number - {{ object.plate_number }}</p>
-<p>Ownwer First Name - {{ object.first_name }}</p>
-<p>Ownder Last Name - {{ object.last_name }}</p>
+<p><b>Plate Number</b> - {{ object.plate_number }}</p>
+<p><b>Owner First Name</b> - {{ object.first_name }}</p>
+<p><b>Owner Last Name</b> - {{ object.last_name }}</p>
+
+<ul class="actions">
+	<li><a href="{{ object.get_update_url }}" class="button primary">Update</a></li>
+	<li><a href="{{ object.get_delete_url }}" class="button primary">Delete</a></li>
+	<li><a href="/plates/" class="button">Back to Main</a></li>
+	<li><a href="/plates/list/" class="button">Back to List</a></li>
+</ul>
 
 {% endblock %}

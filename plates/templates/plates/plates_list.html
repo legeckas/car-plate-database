@@ -25,7 +25,7 @@
 
 				<tr>
 					<td>{{ instance.id }}</td>
-					<td>{{ instance.plate_number }}</td>
+					<td><a href='{{ instance.get_absolute_url }}'>{{ instance.plate_number }}</a></td>
 					<td>{{ instance.first_name }}</td>
 					<td>{{ instance.last_name }}</td>
 				</tr>

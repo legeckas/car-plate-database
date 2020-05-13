@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Create a plate entry</h3>
+<h3>Update a plate entry</h3>
 <div class="center">
 	<form action="." method="POST"> {% csrf_token %}
 	
 		{{ form.as_p }}
 
 		<ul class="actions">
-				<li><input type="submit" value="Save" class="primary"></li>
-				<li><a href="/plates/" class="button">Back to Main</a></li>
+				<li><input type="submit" value="Update" class="primary"></li>
+				<li><a href="{{ object.get_absolute_url }}" class="button">Back to Entry</a></li>
 		</ul>
 	</form>
 </div>
