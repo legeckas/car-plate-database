@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.urls import reverse
 
 # Create your models here.
 
@@ -27,6 +28,9 @@ class Plate(models.Model):
                             blank=False, 
                             null=False
                             )
+
+    def get_absolute_url(self):
+        return reverse('plates:plates-detail', kwargs={"id": self.pk})
 
 class PlateSearch(models.Model):
     search_value = models.CharField(blank=False, null=False, max_length=50)

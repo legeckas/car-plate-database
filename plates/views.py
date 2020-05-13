@@ -1,10 +1,10 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-from django.views.generic import View
-from .forms import PlateSearchForm
+from django.views.generic import View, CreateView, DetailView
+from .forms import PlateCreateForm, PlateSearchForm
 from .models import Plate
 
 class PlatesHomeView(View):
@@ -26,7 +26,7 @@ class PlatesRawListView(View):
 	template_name = 'plates/plates_list.html'
 
 	def get(self, request, search_value=None, *args, **kwargs):
-		
+
 		if search_value is None:
 			queryset = Plate.objects.all()
 		else:
@@ -37,3 +37,17 @@ class PlatesRawListView(View):
 			queryset = queryset_plates | queryset_first_names | queryset_last_names
 
 		return render(request, self.template_name, {'object_list': queryset})
+
+class PlatesCreateView(CreateView):
+	template_name = "plates/plates_create.html"
+	form_class = PlateCreateForm
+
+	#def form_valid(self, form)
+
+class PlatesDetailView(DetailView):
+	template_name = "plates/plates_detail.html"
+	queryset = Plate.objects.all()
+
+	def get_object(self):
+		id_ = self.kwargs.get("id")
+		return get_object_or_404(Plate, id=id_)

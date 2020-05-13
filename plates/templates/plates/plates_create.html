@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Create a plate entry</h3>
+<div class="center">
+	<form action="." method="POST"> {% csrf_token %}
+	
+		{{ form.as_p }}
+
+		<ul class="actions">
+				<li><input type="submit" value="Save" class="button icon solid fa-upload"></li>
+		</ul>
+	</form>
+</div>
+
+{% endblock %}
