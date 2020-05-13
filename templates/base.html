@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Car Plate Database - Backend Demo Task</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+
+		<style>
+			p {text-align: center;}
+			.center {
+				margin: auto;
+				width: 31%;
+			}
+			.bottom_spaced {
+				padding-bottom: 0.5cm;
+			}
+		</style>
+		{% block extra_head %}{% endblock %}
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Car Plate Database</h1>
+							{% block content %}
+							REPLACE ME!!!!
+							{% endblock %}		
+						</div>
+					</div>
+			</div>
+	</body>
+</html>
