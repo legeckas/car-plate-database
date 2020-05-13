@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<h3>This is main view</h3>
 <div class="center">
-	<form method="get" action="#">
+	<form action="." method="POST"> {% csrf_token %}
 	
 		<div class="bottom_spaced">
-			<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+			<input type="text" name="search_value" id="" value="" placeholder="Name" />
 		</div>
 
 		<ul class="actions">
 			<li><input type="submit" value="Search" class="primary"></li>
-			<li><a href="#" class="button">Show All</a></li>
+			<li><a href="list/" class="button">Show All</a></li>
 		</ul>
 	</form>
 </div>

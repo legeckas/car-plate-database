@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import PlateListView
+from .views import PlatesHomeView, PlatesRawListView
+from plates.models import Plate
 
 app_name='plates'
 urlpatterns = [
-    path('', PlateListView.as_view(), name='plates-list'),
+    path('', PlatesHomeView.as_view(), name='plates-main'),
+    path('list/', PlatesRawListView.as_view(), name='plates-list'),
 ]

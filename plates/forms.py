@@ -1,5 +1,5 @@
 from django import forms
-from .models import Plate
+from .models import Plate, PlateSearch
 
 class PlateCreateForm(forms.ModelForm):
 	plate_number 	= forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Please enter a plate number'}))
@@ -12,3 +12,9 @@ class PlateCreateForm(forms.ModelForm):
 			'first_name',
 			'last_name'
 		]
+
+class PlateSearchForm(forms.ModelForm):
+	search_value = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Please enter a search'}))
+	class Meta:
+		model = PlateSearch
+		fields = ['search_value']
