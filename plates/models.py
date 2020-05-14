@@ -13,8 +13,8 @@ class Plate(models.Model):
                             unique=True,
                             validators=[
                                     RegexValidator(
-                                                regex='^\\w{6}$', 
-                                                message='Length has to be 6', 
+                                                regex=r'^[a-zA-Z]{3}\d{3}$', 
+                                                message='Accepted plate format: AAA111', 
                                                 code='nomatch'
                                                 )
                                     ]
@@ -22,12 +22,26 @@ class Plate(models.Model):
     first_name      = models.CharField(
                             max_length=50, 
                             blank=False, 
-                            null=False
+                            null=False,
+                            validators=[
+                                    RegexValidator(
+                                                regex=r'^[a-zA-Z]*$',
+                                                message='Illegal characters used', 
+                                                code='nomatch'
+                                                )
+                                    ]
                             )
     last_name       = models.CharField(
                             max_length=50, 
                             blank=False, 
-                            null=False
+                            null=False,
+                            validators=[
+                                    RegexValidator(
+                                                regex=r'^[a-zA-Z]*$',
+                                                message='Illegal characters used', 
+                                                code='nomatch'
+                                                )
+                                    ]
                             )
 
     def get_absolute_url(self):
