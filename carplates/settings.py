@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # own
+    'rest_framework',
     'pages',
     'plates',
 ]

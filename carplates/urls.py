@@ -22,4 +22,5 @@ urlpatterns = [
 	path('', home_view, name="home"),
     path('admin/', admin.site.urls),
     path('plates/', include('plates.urls')),
+    path('api/', include('plates.apiurls')),
 ]

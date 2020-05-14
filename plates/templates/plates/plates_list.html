@@ -25,9 +25,9 @@
 
 				<tr>
 					<td>{{ instance.id }}</td>
-					<td><a href='{{ instance.get_absolute_url }}'>{{ instance.plate_number }}</a></td>
-					<td>{{ instance.first_name }}</td>
-					<td>{{ instance.last_name }}</td>
+					<td><a href='{{ instance.get_absolute_url }}'>{{ instance.plate_number|upper }}</a></td>
+					<td>{{ instance.first_name|title }}</td>
+					<td>{{ instance.last_name|title }}</td>
 				</tr>
 
 			{% endfor %}

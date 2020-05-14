@@ -8,6 +8,19 @@ from django.views.generic import View, CreateView, DetailView, UpdateView, Delet
 from .forms import PlateCreateForm, PlateSearchForm
 from .models import Plate
 
+class PlateObjectMixin(object):
+	model = Plate
+	lookup = 'id'
+
+	def get_object(self):
+		id_ = self.kwargs.get(self.lookup)
+		obj = None
+
+		if id is not None:
+			obj = get_object_or_404(Plate, id=id_)
+
+		return obj
+
 class PlatesHomeView(View):
 	form_class = PlateSearchForm
 
@@ -42,29 +55,17 @@ class PlatesCreateView(CreateView):
 	template_name = "plates/plates_create.html"
 	form_class = PlateCreateForm
 
-class PlatesDetailView(DetailView):
+class PlatesDetailView(PlateObjectMixin, DetailView):
 	template_name = "plates/plates_detail.html"
 	queryset = Plate.objects.all()
 
-	def get_object(self):
-		id_ = self.kwargs.get("id")
-		return get_object_or_404(Plate, id=id_)
-
-class PlatesUpdateView(UpdateView):
+class PlatesUpdateView(PlateObjectMixin, UpdateView):
 	template_name = "plates/plates_update.html"
 	form_class = PlateCreateForm
 	queryset = Plate.objects.all()
 
-	def get_object(self):
-		id_ = self.kwargs.get("id")
-		return get_object_or_404(Plate, id=id_)
-
-class PlatesDeleteView(DeleteView):
+class PlatesDeleteView(PlateObjectMixin, DeleteView):
 	template_name = "plates/plates_delete.html"
-
-	def get_object(self):
-		id_ = self.kwargs.get("id")
-		return get_object_or_404(Plate, id=id_)
-
 	def get_success_url(self):
+
 		return reverse ('plates:plates-list')
