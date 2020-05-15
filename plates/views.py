@@ -21,12 +21,18 @@ class PlateObjectMixin(object):
 
 		return obj
 
+	def form_valid(self, form):
+		form.save()
+		return super().form_valid(form)
+
+# General main page for the plates database
 class PlatesHomeView(View):
 	form_class = PlateSearchForm
 
 	def get(self, request, *args, **kwargs):
 		return render(request, 'plates/plates_main.html', {})
 
+	# Search function
 	def post(self, request, *args, **kwargs):
 		form = PlateSearchForm(request.POST)
 		context = {'form': form}
@@ -51,17 +57,17 @@ class PlatesRawListView(View):
 
 		return render(request, self.template_name, {'object_list': queryset})
 
-class PlatesCreateView(CreateView):
-	template_name = "plates/plates_create.html"
+class PlatesCreateView(PlateObjectMixin, CreateView):
 	form_class = PlateCreateForm
+	template_name = "plates/plates_create.html"
 
 class PlatesDetailView(PlateObjectMixin, DetailView):
 	template_name = "plates/plates_detail.html"
 	queryset = Plate.objects.all()
 
 class PlatesUpdateView(PlateObjectMixin, UpdateView):
-	template_name = "plates/plates_update.html"
 	form_class = PlateCreateForm
+	template_name = "plates/plates_update.html"
 	queryset = Plate.objects.all()
 
 class PlatesDeleteView(PlateObjectMixin, DeleteView):
