@@ -14,7 +14,7 @@ Password: admin123
 ## API ##
 
 ./api/plates/ - Returns full list of plates in the database
-./api/plates/<id>/ - Returns info on the plate with the given id
+./api/plates/*id*/ - Returns info on the plate with the given id
   
   
 
