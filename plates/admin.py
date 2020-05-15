@@ -4,4 +4,9 @@ from django.contrib import admin
 
 from .models import Plate
 
-admin.site.register(Plate)
+
+
+@admin.register(Plate)
+
+class PlateAdmin(admin.ModelAdmin):
+	list_display = ("plate_number", "first_name", "last_name")
