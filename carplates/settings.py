@@ -127,3 +127,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "statics")
 ]
+
+# CELERY settings
+
+CELERY_BROKER_URL = 'amqp://localhost//'
+CELERY_BROKER_TRANSPORT_OPTIONS = { 'visibility_timeout': 3600 }
+CELERY_RESULT_BACKEND = 'amqp://localhost//'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

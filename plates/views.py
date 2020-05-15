@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views.generic import View, CreateView, DetailView, UpdateView, DeleteView
 from .forms import PlateCreateForm, PlateSearchForm
 from .models import Plate
+from .tasks import execute_save
 
 class PlateObjectMixin(object):
 	model = Plate
@@ -22,7 +23,7 @@ class PlateObjectMixin(object):
 		return obj
 
 	def form_valid(self, form):
-		form.save()
+		execute_save.delay(form.cleaned_data)
 		return super().form_valid(form)
 
 # General main page for the plates database
