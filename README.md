@@ -6,11 +6,6 @@ My backend car plate database project with Django, Django REST framework, Celery
 
 Access through ./plates/ 
 
-## Admin panel ##
-./admin/
-Username: admin
-Password: admin123
-
 ## API ##
 
 ./api/plates/ - Returns full list of plates in the database
