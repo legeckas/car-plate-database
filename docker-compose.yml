@@ -1,0 +1,35 @@
+version: '3'
+services:
+    db:
+        image: postgres:latest
+        env_file:
+            - database.env
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+    rabbit:
+        image: rabbitmq:latest
+        environment:
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: admin123
+    web:
+        build: .
+        command: python /code/manage.py migrate --noinput
+        command: python /code/manage.py runserver 0.0.0.0:8000
+        volumes:
+            - .:/code/
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+            - rabbit  
+    celery:
+        build: .
+        command: celery -A carplates worker -l info
+        user: nobody
+        volumes:
+            - .:/code
+        depends_on:
+            - db
+            - rabbit
+volumes:
+  postgres_data:

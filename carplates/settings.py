@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'carplates.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'admin',
+        'PASSWORD': 'admin123',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -130,9 +134,9 @@ STATICFILES_DIRS = [
 
 # CELERY settings
 
-CELERY_BROKER_URL = 'amqp://localhost//'
+CELERY_BROKER_URL = 'amqp://admin:admin123@rabbit:5672//'
 CELERY_BROKER_TRANSPORT_OPTIONS = { 'visibility_timeout': 3600 }
-CELERY_RESULT_BACKEND = 'amqp://localhost//'
+CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
