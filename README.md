@@ -1,7 +1,5 @@
 # car-plate-database
 
-[toc]
-
 My backend car plate database project with Django, Django REST framework, Celery framework, and Rabbit MQ in docker.
 
   
@@ -23,7 +21,7 @@ The image has been tested with the latest images of rabbitmq and postgres.
 2. Run the build command:
 
    ```bash
-   docker-compose up --build --force-recreate
+   docker-compose up --build
    ```
 
 When building, celery will throw ~5x `[Errno 111] Connection refused` before rabbitmq boots up and the connection is established.
@@ -39,14 +37,14 @@ When building, celery will throw ~5x `[Errno 111] Connection refused` before rab
 - To have full functionality you need to first migrate settings:
 
 ```bash
-$ docker exec -it src_web_1 bash
+$ docker exec -it car-plate-database_web_1 bash
 $ python manage.py migrate
 ```
 
 - Create an admin user to have access to the admin panel in `./admin` for an overview of users/database:
 
 ```bash
-$ docker exec -it src_web_1 bash
+$ docker exec -it car-plate-database_web_1 bash
 $ python manage.py createsuperuser
 ```
 
